@@ -1,0 +1,10 @@
+@startuml
+actor User
+participant "Order" as Order
+database "Database" as DB
+
+User -> Order : Request order history
+Order -> DB : Query orders(user_id)
+DB -> Order : Return order details
+Order -> User : Display order history
+@enduml

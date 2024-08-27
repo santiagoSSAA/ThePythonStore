@@ -1,0 +1,11 @@
+@startuml
+actor User
+participant "Search System" as SearchSystem
+database "Database" as DB
+participant "Product" as Product
+
+User -> SearchSystem : Enter search query(query)
+SearchSystem -> DB : Query products(query)
+DB -> SearchSystem : Return matching products
+SearchSystem -> User : Display search results
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+entity "Product" {
+  * id : INT <<PK>>
+  * name : VARCHAR
+  * description : TEXT
+  * price : DECIMAL
+  * stock_quantity : INT
+  * created_at : TIMESTAMP
+  * updated_at : TIMESTAMP
+}
+
+entity "User" {
+  * id : INT <<PK>>
+  * username : VARCHAR
+  * email : VARCHAR
+  * password : VARCHAR
+  * first_name : VARCHAR
+  * last_name : VARCHAR
+  * created_at : TIMESTAMP
+  * updated_at : TIMESTAMP
+}
+
+entity "Cart" {
+  * id : INT <<PK>>
+  * user_id : INT <<FK>>
+  * created_at : TIMESTAMP
+  * updated_at : TIMESTAMP
+}
+
+entity "CartItem" {
+  * id : INT <<PK>>
+  * cart_id : INT <<FK>>
+  * product_id : INT <<FK>>
+  * quantity : INT
+}
+
+entity "Order" {
+  * id : INT <<PK>>
+  * user_id : INT <<FK>>
+  * order_date : TIMESTAMP
+  * status : VARCHAR
+}
+
+entity "OrderItem" {
+  * id : INT <<PK>>
+  * order_id : INT <<FK>>
+  * product_id : INT <<FK>>
+  * quantity : INT
+  * price : DECIMAL
+}
+
+Product --o{ CartItem : contains
+Product --o{ OrderItem : contains
+User --o{ Cart : owns
+User --o{ Order : places
+Cart --o{ CartItem : contains
+Order --o{ OrderItem : contains
+@enduml

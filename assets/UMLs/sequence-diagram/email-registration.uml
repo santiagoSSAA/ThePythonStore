@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant "Registration System" as RegSys
+database "Database" as DB
+
+User -> RegSys : Submit registration form(name, email, password)
+RegSys -> RegSys : Validate input
+RegSys -> DB : Check if email exists(email)
+DB -> RegSys : Email status
+RegSys -> DB : Insert new user(name, email, password)
+DB -> RegSys : Confirmation of user creation
+RegSys -> User : Display registration success message
+@enduml

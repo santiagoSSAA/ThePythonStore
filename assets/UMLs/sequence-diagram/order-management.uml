@@ -1,0 +1,17 @@
+@startuml
+actor Admin
+participant "Order Management System" as OMS
+database "Database" as DB
+
+== View Orders ==
+Admin -> OMS : Request order list
+OMS -> DB : Query orders(status)
+DB -> OMS : Return order details
+OMS -> Admin : Display order list
+
+== Update Order Status ==
+Admin -> OMS : Select order and new status(order_id, status)
+OMS -> DB : Update order status(order_id, status)
+DB -> OMS : Confirm status update
+OMS -> Admin : Display confirmation
+@enduml

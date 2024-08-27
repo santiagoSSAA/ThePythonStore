@@ -1,0 +1,22 @@
+@startuml
+actor User
+participant "Cart" as Cart
+participant "Product" as Product
+participant "Order" as Order
+database "Database" as DB
+
+User -> Cart : Add product to cart(product_id, quantity)
+Cart -> DB : Check stock(product_id)
+DB -> Cart : Stock information
+Cart -> DB : Update cart(cart_id, product_id, quantity)
+DB -> Cart : Cart updated
+
+User -> Cart : Proceed to checkout
+Cart -> Order : Create order(user_id, cart_id)
+Order -> DB : Save order details
+DB -> Order : Order saved
+
+Order -> Cart : Clear cart(cart_id)
+Cart -> DB : Update cart status
+DB -> Cart : Cart status updated
+@enduml

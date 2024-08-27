@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant "Profile Management System" as PMS
+database "Database" as DB
+
+User -> PMS : Request profile update(new_name, new_email, new_password)
+PMS -> PMS : Validate new data
+PMS -> DB : Check if email already exists(new_email)
+DB -> PMS : Email status
+PMS -> DB : Update user profile(user_id, new_name, new_email, new_password)
+DB -> PMS : Confirmation of update
+PMS -> User : Display update success message
+@enduml
