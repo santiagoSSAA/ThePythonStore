@@ -1,0 +1,37 @@
+@startuml
+folder "Client Side" {
+  node "Client Browser" {
+    [HTML/CSS/JavaScript]
+  }
+}
+
+folder "Web Layer" {
+  node "Load Balancer" {
+  }
+
+  node "Web Server" {
+    component "Django Application" as djangoApp
+  }
+}
+
+folder "Application Layer" {
+  node "Application Server" {
+    component "Python Backend" as pythonBackend
+  }
+  node "Database Server" {
+  database "PostgreSQL Database" as db
+  }
+}
+
+folder "Cache Layer" {
+node "Cache Server" {
+    [Redis/Memcached]
+  }
+}
+
+"Client Browser" --> "Load Balancer" : "HTTP Requests"
+"Load Balancer" --> "Web Server" : "Distributes Requests"
+"Web Server" --> "Application Server" : "Forwards Requests"
+"Application Server" --> "Database Server" : "SQL Queries"
+"Application Server" --> "Cache Server" : "Cache Requests"
+@enduml
