@@ -21,10 +21,10 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField(
-        Category, related_name="products", blank=True
+        Category, related_name="product_categories", blank=True
     )
     tags = models.ManyToManyField(
-        Category, related_name="products", blank=True
+        Category, related_name="product_tags", blank=True
     )
     
     def __str__(self):
